@@ -1,0 +1,9 @@
+{
+	"author": ["Ginpachi"],
+	"bot_version": [3,5,0],
+	"description": "Track and interact with your shared GuessTheGame results.",
+	"hidden": false,
+	"install_msg": "Installed GuessTheGame!",
+	"short": "A GuessTheGame companion cog.",
+	"tags": ["game", "guessthegame"]
+}
