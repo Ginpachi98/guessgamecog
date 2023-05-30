@@ -37,7 +37,7 @@ class GuessGame(commands.Cog):
         # Wordle verification regex
         self.w = re.compile(r"#GuessTheGame #(\d{3,})")
 
-     def _parse_message(self, message):
+    def _parse_message(self, message):
         """Parse message string and check if it's a valid GuesstheGame result"""
 
         # Split into lines
