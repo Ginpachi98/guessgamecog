@@ -32,7 +32,7 @@ class GuessGame(commands.Cog):
         self.w = re.compile(r"#GuessTheGame #(\d{3,})")
 
     def _parse_message(self, message):
-        """Parse message string and check if it's a valid guesstheGame result"""
+        """Parse message string and check if it's a valid GuesstheGame result"""
 
         # Split into lines
         lines = message.clean_content.split('\n')
@@ -54,7 +54,7 @@ class GuessGame(commands.Cog):
 
 
     async def _add_result(self, guild, author, gameid, attempts):
-        """Add a user's wordle result to their record"""
+        """Add a user's GuesstheGame result to their record"""
 
         # Get previous stats
         prev = await self.config.member(author).all()
