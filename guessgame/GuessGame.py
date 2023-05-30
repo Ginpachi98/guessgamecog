@@ -268,7 +268,6 @@ class GuessGame(commands.Cog):
 
         # Check if valid message
         gameinfo = self._parse_message(message)
-        await message.channel.send(gameinfo[1])
         if gameinfo is not None:
             # Avoid duplicates
             async with self.config.member(message.author).gameids() as gameids:
@@ -279,6 +278,7 @@ class GuessGame(commands.Cog):
                     await bank.withdraw_credits(message.author, 50)
                     return
             await self._add_result(message.guild, message.author, gameinfo[0], gameinfo[1])
+            await message.channel.send(gameinfo[1])
             poruka = "nesto ne valja"
             # Notify user
             if gameinfo[1] == 1:
