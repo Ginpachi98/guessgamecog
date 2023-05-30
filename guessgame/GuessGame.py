@@ -294,4 +294,4 @@ class GuessGame(commands.Cog):
             elif gameinfo[1] == 6:
                 poruka = random.choice(six_tries)
             await message.channel.send(
-                    poruka + "\ndobijas " + str((7-gameinfo[1])*15) + " Ćaćmića"
+                    poruka + "\ndobijas " + str((7-gameinfo[1])*15) + " Ćaćmića")
