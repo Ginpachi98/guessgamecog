@@ -70,7 +70,7 @@ class GuessGame(commands.Cog):
             else:
                 gameids.append(gameid)
         if attempts == 7:
-            await message.channel.send("NEMAAAAS RUUUUUKEE")
+            await ctx.send("NEMAAAAS RUUUUUKEE")
         # Update score
         if attempts == 1:
             # First guess gets 10 points
