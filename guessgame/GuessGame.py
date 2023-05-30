@@ -86,9 +86,10 @@ class GuessGame(commands.Cog):
             await self.config.member(author).curr_streak.set(1)
 
         # Update qty
-        #newhist = prev['qty'].copy()
-        #newhist[attempts-1] += 1
-       # await self.config.member(author).set_raw('qty', value=newhist)
+        if attempts =! 7
+            newhist = prev['qty'].copy()
+            newhist[attempts-1] += 1
+            await self.config.member(author).set_raw('qty', value=newhist)
 
     @commands.command()
     async def guessstats(self, ctx: commands.Context, member: discord.Member):
