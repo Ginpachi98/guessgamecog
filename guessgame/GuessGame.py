@@ -191,7 +191,7 @@ class GuessGame(commands.Cog):
         channelid = await self.config.guild(ctx.guild).channelid()
         refchannel = ctx.guild.get_channel(channelid).mention if channelid is not None else "N/A"
         embed = discord.Embed(
-            title=f"{ctx.guild.name} Wordle Leaderboard",
+            title=f"{ctx.guild.name} GuesstheGame Leaderboard",
             description=f"Share your results in {refchannel}",
             color=await self.bot.get_embed_color(ctx)
         )
@@ -223,10 +223,10 @@ class GuessGame(commands.Cog):
         This might take a while for large channels.
         """
 
-        # Make sure a wordle channel is set first.
+        # Make sure a GuesstheGame channel is set first.
         channelid = await self.config.guild(ctx.guild).channelid()
         if channelid is None:
-            await ctx.send("Set a GuesstheGame channel with !setwordlechannel first!")
+            await ctx.send("Set a GuesstheGame channel with !setguesschannel first!")
             return
 
         #Reaction poll
@@ -248,14 +248,14 @@ class GuessGame(commands.Cog):
                 if gameinfo is not None:
                     await self._add_result(message.guild, message.author, gameinfo[0], gameinfo[1])
 
-            await ctx.send(f"Wordle results successfully loaded.")
+            await ctx.send(f"GuesstheGame results successfully loaded.")
         else:
             await ctx.send("Nevermind then.")
             return
 
     @commands.Cog.listener()
     async def on_message_without_command(self, message: discord.Message):
-        """Listen to users posting their wordle results and add them to stats"""
+        """Listen to users posting their GuesstheGame results and add them to stats"""
         # Don't listen to messages from bots
         if message.author.bot: return
 
