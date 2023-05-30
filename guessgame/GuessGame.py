@@ -50,7 +50,7 @@ class GuessGame(commands.Cog):
             attempts = 7
             gameid = int(match.groups()[0])
             if lines[2].count('\N{LARGE GREEN SQUARE}') != 0:
-                attempts = lines[2].count('\N{LARGE GREEN SQUARE}') + 1
+                attempts = lines[2].count('\N{LARGE RED SQUARE}') + 1
             # Passed, return game info
             return gameid, attempts
         else:
