@@ -8,7 +8,7 @@ from redbot.core.utils.menus import start_adding_reactions
 
 
 class GuessGame(commands.Cog):
-    """Wordle cog to track statistics and streaks"""
+    """GuesstheGame cog to track statistics and streaks"""
 
     def __init__(self, bot):
         super().__init__()
@@ -32,7 +32,7 @@ class GuessGame(commands.Cog):
         self.w = re.compile(r"#GuessTheGame #(\d{3,})")
 
     def _parse_message(self, message):
-        """Parse message string and check if it's a valid wordle result"""
+        """Parse message string and check if it's a valid guesstheGame result"""
 
         # Split into lines
         lines = message.clean_content.split('\n')
@@ -89,7 +89,7 @@ class GuessGame(commands.Cog):
 
     @commands.command()
     async def guessstats(self, ctx: commands.Context, member: discord.Member):
-        """Retrieve Wordle Statistics for a single user
+        """Retrieve GuesstheGame Statistics for a single user
 
         Statistics to be returned:
         - Solve count histogram (freq 1~6)
@@ -105,7 +105,7 @@ class GuessGame(commands.Cog):
         channelid = await self.config.guild(ctx.guild).channelid()
         refchannel = ctx.guild.get_channel(channelid).mention if channelid is not None else "N/A"
         embed = discord.Embed(
-            title=f"{member.display_name}'s Wordle Statistics",
+            title=f"{member.display_name}'s GuesstheGame Statistics",
             description=f"Pulled from messages in {refchannel}",
             color=await self.bot.get_embed_color(ctx)
         )
@@ -140,7 +140,7 @@ class GuessGame(commands.Cog):
 
     @commands.command()
     async def guesstop(self, ctx: commands.Context):
-        """Show the Wordle top-5 leaderboard for total points and average attempts per solve."""
+        """Show the GuesstheGame top-5 leaderboard for total points and average attempts per solve."""
 
         # Get scores and sort them
         memberstats = await self.config.all_members(guild=ctx.guild)
@@ -202,27 +202,27 @@ class GuessGame(commands.Cog):
     @commands.command()
     @checks.mod_or_permissions(administrator=True)
     async def guesschannel(self, ctx: commands.Context, channel: discord.TextChannel = None):
-        """Set channel where users post wordle scores.
+        """Set channel where users post GuesstheGame scores.
         Not passing a channel stops the bot from parsing any channel.
         """
         if channel is not None:
             await self.config.guild(ctx.guild).channelid.set(channel.id)
-            await ctx.send(f"Wordle channel has been set to {channel.mention}")
+            await ctx.send(f"GuesstheGame channel has been set to {channel.mention}")
         else:
             await self.config.guild(ctx.guild).channelid.set(None)
-            await ctx.send("Wordle channel has been cleared")
+            await ctx.send("GuesstheGame channel has been cleared")
 
     @commands.command()
     @checks.mod_or_permissions(administrator=True)
     async def guessreparse(self, ctx: commands.Context, history_limit: int = 1000):
-        """Reparse wordle results from channel history. Number specifies message limit.
+        """Reparse GuesstheGame results from channel history. Number specifies message limit.
         This might take a while for large channels.
         """
 
         # Make sure a wordle channel is set first.
         channelid = await self.config.guild(ctx.guild).channelid()
         if channelid is None:
-            await ctx.send("Set a wordle channel with !setwordlechannel first!")
+            await ctx.send("Set a GuesstheGame channel with !setwordlechannel first!")
             return
 
         #Reaction poll
