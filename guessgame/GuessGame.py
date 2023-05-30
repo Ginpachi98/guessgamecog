@@ -47,7 +47,7 @@ class GuessGame(commands.Cog):
         # Parse first line
         match = self.w.match(lines[0])
         if match is not None:
-            ctx.send("test"
+            await ctx.send("test")
             attempts = 7
             gameid = int(match.groups()[0])
             if lines[2].count('\N{LARGE GREEN SQUARE}') != 0:
