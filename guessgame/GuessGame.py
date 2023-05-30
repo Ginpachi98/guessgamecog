@@ -50,7 +50,7 @@ class GuessGame(commands.Cog):
         if match is not None:
             gameid = int(match.groups()[0])
             if lines[2].count('\N{LARGE GREEN SQUARE}') == 0:
-               return None
+                attempts = 7
             else:
                 attempts = 6 - lines[2].count('\N{WHITE LARGE SQUARE}')
             # Passed, return game info
@@ -293,5 +293,7 @@ class GuessGame(commands.Cog):
                 poruka = random.choice(five_tries)
             elif gameinfo[1] == 6:
                 poruka = random.choice(six_tries)
+            elif gameinfo[1] ==7:
+                poruka = 'NEMAAAAS RUUUUKEEE'
             await message.channel.send(
                     poruka + "\ndobijas " + str((7-gameinfo[1])*15) + " Ćaćmića")
