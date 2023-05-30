@@ -279,7 +279,7 @@ class GuessGame(commands.Cog):
                     await bank.withdraw_credits(message.author, 50)
                     return
             await self._add_result(message.guild, message.author, gameinfo[0], gameinfo[1])
-
+            poruka = "nesto ne valja"
             # Notify user
             if gameinfo[1] == 1:
                 poruka = "GEJmer"
@@ -293,7 +293,7 @@ class GuessGame(commands.Cog):
                 poruka = random.choice(five_tries)
             elif gameinfo[1] == 6:
                 poruka = random.choice(six_tries)
-            elif gameinfo[1] ==7:
-                poruka = 'NEMAAAAS RUUUUKEEE'
+            elif gameinfo[1] == 7:
+                poruka = "NEMAAAAS RUUUUKEEE"
             await message.channel.send(
                     poruka + "\ndobijas " + str((7-gameinfo[1])*15) + " Ćaćmića")
