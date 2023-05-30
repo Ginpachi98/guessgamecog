@@ -77,6 +77,7 @@ class GuessGame(commands.Cog):
             # Second guess gets 5, third guess gets 4, etc.
             add_score = 7 - attempts
         await self.config.member(author).total_score.set(prev['total_score'] + add_score)
+        await bank.deposit_credits(author, add_score*15)
         
         if gameid - prev['last_gameid'] == 1:
             await self.config.member(author).last_gameid.set(gameid)
