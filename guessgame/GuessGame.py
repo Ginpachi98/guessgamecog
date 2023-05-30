@@ -6,6 +6,12 @@ from redbot.core import Config, checks, commands, bank
 from redbot.core.utils.predicates import ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 
+six_tries = ["STOJAAANEE", "mene bi bilo sramota da postujem ovo", "postoji dobra sansa da je ovo Cacmi","Double Bogey"]
+five_tries = ["Bogey Bogey Bogey","Kole-tier","ispod proseka si druze"]
+three_tries = ["That's a Birdie :bird:",":deciduous_tree:", "Mnogo je dobar ovaj lik"]
+four_tries = ["Par","Prilicno si prosecan, decko :boy:", "puta dva je osam"]
+two_tries = ["Eagle :eagle:",":kekw:",":thonk:","shieeeeeeeeeeeeeeeeet"]
+Blacklist = [172798475967266816]
 
 class GuessGame(commands.Cog):
     """GuesstheGame cog to track statistics and streaks"""
@@ -276,18 +282,16 @@ class GuessGame(commands.Cog):
 
             # Notify user
             if gameinfo[1] == 1:
-                await message.channel.send(
-                    f"Fantastic solve, {message.author.mention}!!!{gameinfo[0]} Updated stats."
-                )
-            if gameinfo[1] <= 3:
-                await message.channel.send(
-                    f"Great solve, {message.author.mention}! Updated stats."
-                )
-            elif gameinfo[1] < 6:
-                await message.channel.send(
-                    f"Nice solve, {message.author.mention}. Updated stats."
-                )
+                poruka = "GEJmer"
+            elif gameinfo[1] == 2:
+                poruka = random.choice(two_tries)
+            elif gameinfo[1] == 3:
+                poruka = random.choice(three_tries)
+            elif gameinfo[1] == 4:
+                poruka = random.choice(four_tries)
+            elif gameinfo[1] == 5:
+                poruka = random.choice(five_tries)
             elif gameinfo[1] == 6:
-                await message.channel.send(
-                    f"Close call, {message.author.mention}. Updated stats."
-                )
+                poruka = random.choice(six_tries)
+            await message.channel.send(
+                    poruka + "\ndobijas " + str((7-gameinfo[1])*15) + " Ćaćmića"
