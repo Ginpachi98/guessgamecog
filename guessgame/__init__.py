@@ -1,4 +1,4 @@
-from .guessgame import GuessGame
+from .guessgamecog import GuessGame
 
 async def setup(bot):
     cog = GuessGame(bot)
