@@ -37,7 +37,7 @@ class GuessGame(commands.Cog):
         # Wordle verification regex
         self.w = re.compile(r"#GuessTheGame #(\d{3,})")
 
-    async def _parse_message(self, message):
+    def _parse_message(self, message):
         """Parse message string and check if it's a valid GuesstheGame result"""
         # Split into lines
         lines = message.clean_content.split('\n')
@@ -47,7 +47,6 @@ class GuessGame(commands.Cog):
         # Parse first line
         match = self.w.match(lines[0])
         if match is not None:
-            await ctx.send("test")
             attempts = 7
             gameid = int(match.groups()[0])
             if lines[2].count('\N{LARGE GREEN SQUARE}') != 0:
@@ -87,9 +86,9 @@ class GuessGame(commands.Cog):
             await self.config.member(author).curr_streak.set(1)
 
         # Update qty
-        newhist = prev['qty'].copy()
-        newhist[attempts-1] += 1
-        await self.config.member(author).set_raw('qty', value=newhist)
+        #newhist = prev['qty'].copy()
+        #newhist[attempts-1] += 1
+       # await self.config.member(author).set_raw('qty', value=newhist)
 
     @commands.command()
     async def guessstats(self, ctx: commands.Context, member: discord.Member):
