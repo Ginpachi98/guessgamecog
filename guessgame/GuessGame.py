@@ -37,7 +37,7 @@ class GuessGame(commands.Cog):
         # Wordle verification regex
         self.w = re.compile(r"#GuessTheGame #(\d{3,})")
 
-    def _parse_message(self, message):
+    async def _parse_message(self, message):
         """Parse message string and check if it's a valid GuesstheGame result"""
         # Split into lines
         lines = message.clean_content.split('\n')
@@ -47,6 +47,7 @@ class GuessGame(commands.Cog):
         # Parse first line
         match = self.w.match(lines[0])
         if match is not None:
+            ctx.send("test"
             attempts = 7
             gameid = int(match.groups()[0])
             if lines[2].count('\N{LARGE GREEN SQUARE}') != 0:
@@ -69,8 +70,6 @@ class GuessGame(commands.Cog):
                 return
             else:
                 gameids.append(gameid)
-        if attempts == 7:
-            await ctx.send("NEMAAAAS RUUUUUKEE")
         # Update score
         if attempts == 1:
             # First guess gets 10 points
