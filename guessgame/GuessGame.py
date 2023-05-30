@@ -37,9 +37,9 @@ class GuessGame(commands.Cog):
         # Wordle verification regex
         self.w = re.compile(r"#GuessTheGame #(\d{3,})")
 
-    def _parse_message(self, message):
+    async def _parse_message(self, message):
         """Parse message string and check if it's a valid GuesstheGame result"""
-
+        await message.channel.send("NEMAAAAS RUUUUUKEE")
         # Split into lines
         lines = message.clean_content.split('\n')
         # Early exit for messages with less than 3 lines
@@ -79,7 +79,7 @@ class GuessGame(commands.Cog):
             # Second guess gets 5, third guess gets 4, etc.
             add_score = 7 - attempts
         await self.config.member(author).total_score.set(prev['total_score'] + add_score)
-
+        
         if gameid - prev['last_gameid'] == 1:
             await self.config.member(author).last_gameid.set(gameid)
             await self.config.member(author).curr_streak.set(prev['curr_streak']+1)
