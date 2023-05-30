@@ -264,11 +264,6 @@ class GuessGame(commands.Cog):
         # Check if valid message
         gameinfo = self._parse_message(message)
         if gameinfo is not None:
-            if message.author.id in Blacklist :
-                await message.channel.send(":rainbow_flag: Certified cringe  classic :rainbow_flag:")
-                await message.channel.send(f"https://cdn.discordapp.com/attachments/246714379855331350/988776284819693578/videoplayback.mp4")
-                await message.author.send(f"https://c.tenor.com/JDs9Xawf48EAAAAC/turkey-leo123.gif")
-                return
             # Avoid duplicates
             async with self.config.member(message.author).gameids() as gameids:
                 if gameinfo[0] in gameids:
