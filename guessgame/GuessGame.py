@@ -49,7 +49,7 @@ class GuessGame(commands.Cog):
         match = self.w.match(lines[0])
         if match is not None:
             gameid = int(match.groups()[0])
-            if lines[2].count('\N{LARGE GREEN SQUARE}') == 0:
+            if lines[2].count('\N{LARGE GREEN SQUARE}') == None:
                 attempts = 7
             else:
                 attempts = 6 - lines[2].count('\N{WHITE LARGE SQUARE}')
