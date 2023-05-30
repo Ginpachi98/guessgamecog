@@ -268,6 +268,7 @@ class GuessGame(commands.Cog):
 
         # Check if valid message
         gameinfo = self._parse_message(message)
+        await message.channel.send(gameinfo[1])
         if gameinfo is not None:
             # Avoid duplicates
             async with self.config.member(message.author).gameids() as gameids:
