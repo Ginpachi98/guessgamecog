@@ -39,7 +39,6 @@ class GuessGame(commands.Cog):
 
     def _parse_message(self, message):
         """Parse message string and check if it's a valid GuesstheGame result"""
-        await message.channel.send("NEMAAAAS RUUUUUKEE")
         # Split into lines
         lines = message.clean_content.split('\n')
         # Early exit for messages with less than 3 lines
@@ -70,7 +69,8 @@ class GuessGame(commands.Cog):
                 return
             else:
                 gameids.append(gameid)
-
+        if attempts == 7:
+            await message.channel.send("NEMAAAAS RUUUUUKEE")
         # Update score
         if attempts == 1:
             # First guess gets 10 points
