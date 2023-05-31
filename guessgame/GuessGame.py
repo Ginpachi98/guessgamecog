@@ -59,7 +59,8 @@ class GuessGame(commands.Cog):
 
     async def _add_result(self, guild, author, gameid, attempts):
         """Add a user's GuesstheGame result to their record"""
-
+        if attempts == 7
+            return
         # Get previous stats
         prev = await self.config.member(author).all()
 
@@ -77,7 +78,7 @@ class GuessGame(commands.Cog):
             # Second guess gets 5, third guess gets 4, etc.
             add_score = 7 - attempts
         await self.config.member(author).total_score.set(prev['total_score'] + add_score)
-        await bank.deposit_credits(author, add_score*15)
+        #await bank.deposit_credits(author, add_score*15)
         
         if gameid - prev['last_gameid'] == 1:
             await self.config.member(author).last_gameid.set(gameid)
@@ -87,10 +88,10 @@ class GuessGame(commands.Cog):
             await self.config.member(author).curr_streak.set(1)
 
         # Update qty
-        if attempts != 7:
-            newhist = prev['qty'].copy()
-            newhist[attempts-1] += 1
-            await self.config.member(author).set_raw('qty', value=newhist)
+        
+        newhist = prev['qty'].copy()
+        newhist[attempts-1] += 1
+        await self.config.member(author).set_raw('qty', value=newhist)
 
     @commands.command()
     async def guessstats(self, ctx: commands.Context, member: discord.Member):
