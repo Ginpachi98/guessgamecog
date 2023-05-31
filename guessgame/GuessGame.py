@@ -59,7 +59,7 @@ class GuessGame(commands.Cog):
 
     async def _add_result(self, guild, author, gameid, attempts):
         """Add a user's GuesstheGame result to their record"""
-        if attempts == 7
+        if attempts == 7:
             return
         # Get previous stats
         prev = await self.config.member(author).all()
