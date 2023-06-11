@@ -42,8 +42,9 @@ class GuessGame(commands.Cog):
         # Split into lines
         lines = message.clean_content.split('\n')
         # Early exit for messages with less than 3 lines
-        if len(lines) != 5:
-            return None
+        if not (len(lines) == 5 or len(lines) == 6):
+            return none
+            
         # Parse first line
         match = self.w.match(lines[0])
         if match is not None:
